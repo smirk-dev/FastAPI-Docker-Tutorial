@@ -3,6 +3,10 @@ name: Docker image build
 on:
   push:
     branches: [ main ]
+  schedule:
+    # every Monday 03:30 UTC (09:00 IST): rebuild on a fresh python:3.12-slim base
+    - cron: "30 3 * * 1"
+  workflow_dispatch:
 
 jobs:
   build:

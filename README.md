@@ -1,9 +1,10 @@
 # fastapi-docker-cicd
 
-Backend Development (CSFS3008P) · UPES · B.Tech Full Stack Sem 5 · Theory · **Task 4**
+Backend Development (CSFS3008P) · UPES · B.Tech Full Stack Sem 5 · Theory · **Unit 4 Combined Hands-On Task**
 Containerise a FastAPI app, push it to Docker Hub, and automate the build + push with GitHub Actions.
 
-- Parent repository: [`smirk-dev/Backend-Development`](https://github.com/smirk-dev/Backend-Development) (this repo is mounted there as a git submodule at `Theory/Task4`)
+- Parent repository: [`smirk-dev/Backend-Development`](https://github.com/smirk-dev/Backend-Development) (this repo is mounted there as a git submodule at `Theory/Unit4-Docker-CICD`)
+- Follow-up PBL (test, then build and push, on a daily schedule): [`smirk-dev/backend-pbl-notes-cicd`](https://github.com/smirk-dev/backend-pbl-notes-cicd)
 - Docker Hub image: [`smirkdev/fastapi-app`](https://hub.docker.com/r/smirkdev/fastapi-app) (tag `v0.1`)
 - Task brief: *Hands On Task* (Unit 4), published at <https://upessocs.github.io>
 
@@ -22,7 +23,7 @@ Code change -> git push -> GitHub Actions -> docker build -> docker push (Docker
 | `requirements.txt` | `fastapi==0.163.1`, `uvicorn==0.54.0` |
 | `Dockerfile` | `python:3.12-slim`, installs requirements, runs uvicorn on port 8000 |
 | `.dockerignore` | keeps `.env`, `.git` and `.github` out of the image (`COPY . .` would otherwise bake the token in) |
-| `.github/workflows/ActionsYaml.yaml` | on push to `main`: checkout, docker login, build, push |
+| `.github/workflows/ActionsYaml.yaml` | on push to `main`, every Monday 03:30 UTC (schedule) and on demand (`workflow_dispatch`): checkout, docker login, build, push |
 | `nginx.conf` | round-robin load balancer over two instances (8001, 8002), listening on 8080 |
 | `.env.example` | template for the local-only, gitignored `.env` |
 
@@ -83,4 +84,5 @@ The token is never committed. It is passed to `docker login` through `--password
 ## Notes
 
 - The tag `v0.1` is overwritten on every push, as the brief specifies. For real releases, tag with the commit SHA.
+- The weekly scheduled run keeps the image rebuilt on the latest `python:3.12-slim` security patches even when no code changes. GitHub pauses scheduled workflows after 60 days without repository activity; re-enable from the Actions tab if that happens.
 - The Student API is stateless, which is what makes running several instances behind a load balancer safe.
