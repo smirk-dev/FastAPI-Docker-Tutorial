@@ -3,8 +3,8 @@
 Backend Development (CSFS3008P) · UPES · B.Tech Full Stack Sem 5 · Theory · **Unit 4 Combined Hands-On Task**
 Containerise a FastAPI app, push it to Docker Hub, and automate the build + push with GitHub Actions.
 
-- Parent repository: [`smirk-dev/Backend-Development`](https://github.com/smirk-dev/Backend-Development) (this repo is mounted there as a git submodule at `Theory/Unit4-Docker-CICD`)
-- Follow-up PBL (test, then build and push, on a daily schedule): [`smirk-dev/backend-pbl-notes-cicd`](https://github.com/smirk-dev/backend-pbl-notes-cicd)
+- Parent repository: [`smirk-dev/BackendDevelopment`](https://github.com/smirk-dev/BackendDevelopment) (this repo is mounted there as a git submodule at `Theory/Unit4-Docker-CICD`)
+- Follow-up PBL (test, then build and push, on a daily schedule): [`smirk-dev/Backend-PBL`](https://github.com/smirk-dev/Backend-PBL)
 - Docker Hub image: [`smirkdev/fastapi-app`](https://hub.docker.com/r/smirkdev/fastapi-app) (tag `v0.1`)
 - Task brief: *Hands On Task* (Unit 4), published at <https://upessocs.github.io>
 
