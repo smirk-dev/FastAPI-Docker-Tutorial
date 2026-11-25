@@ -81,6 +81,14 @@ The token is never committed. It is passed to `docker login` through `--password
 | Part 8: code change adds SAP ID and location, pushed | Actions run succeeded |
 | Pulled the updated image | OK, `/` returned `{"application":"Student API","framework":"FastAPI","status":"running","sapid":"590012069","location":"Dehradun"}` |
 
+## Screenshots
+
+| | |
+|---|---|
+| **GitHub Actions run, green** (public run page: build job, 20 s, success) | ![github-actions-success](screenshots/github-actions-success.png) |
+| **Two instances + nginx** (`smirkdev/fastapi-app:v0.1` twice behind `nginx:alpine`; 10 requests through the load balancer split 5 / 5, per the request logs) | ![scaling-load-balancing](screenshots/scaling-load-balancing.png) |
+| **Final API output** (`GET /` through the load balancer, with SAP ID and location from Part 8) | ![final-output](screenshots/final-output.png) |
+
 ## Notes
 
 - The tag `v0.1` is overwritten on every push, as the brief specifies. For real releases, tag with the commit SHA.
